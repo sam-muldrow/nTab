@@ -1,0 +1,162 @@
+html, body {
+    background-color: #323437;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.searchContainer {
+    display: flex;
+
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  /* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.searchIcon {
+    background-color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 44px;
+    position: relative;
+    width: 50px;
+    margin: 5px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchIcon:hover {
+    color: blue;
+    cursor: pointer;
+}
+.searchBox {
+    background-color: white;
+    border: none;
+    border-radius: 50px;
+    color: black;
+    height: 44px;
+    padding-inline-end: 44px;
+    padding-inline-start: 44px;
+    position: relative;
+    width: 90%;
+    margin: 5px;
+}
+
+.searchButton {
+    background-color: white;
+    border: none;
+    border-radius: 50px;
+    color: black;
+    height: 44px;
+    padding-inline-end: 44px;
+    padding-inline-start: 44px;
+    position: relative;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.searchButton:hover {
+    background-color: #ede9e9;
+}
+
+.headerTime {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.mainContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+  
+.box {
+    height: 500px;
+    width: 350px;
+    border: 3px solid #4c4f52;
+    background-color: #4c4f52;
+    border-radius: .5em;
+    padding: 10px;
+    color: white;
+    margin: 10px;
+}
+
+.mainBox {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.box.over {
+    border: 3px dotted #666;
+}
+
+.grow { 
+    transition: all .2s ease-in-out; 
+}
+    
+.grow:hover { 
+    transform: scale(1.1); 
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: white;
+    text-align: center;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+.footer span {
+    margin: 10px;
+    font-weight: bold;
+    font-size: larger;
+}
+.footerSettingsButton {
+    cursor: pointer;
+}
