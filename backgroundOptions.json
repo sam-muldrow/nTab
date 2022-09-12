@@ -1,0 +1,32 @@
+{
+    "backgroundOptions" : [
+        {
+            "regularBackground" : {
+                "type": "color",
+                "background-color" : "#323437",
+                "text-color" : "#FFFFFF"
+            },
+            "Artem" : {
+                "type": "image",
+                "src" : "artem-labunsky-Ehg9b_GzOXw-unsplash.jpg"
+            } ,       
+            "Clayton" : {
+                "type": "image",
+                "src" : "clayton-uMlJgAViDJk-unsplash.jpg"
+            },
+            "Neha" : {
+                "type": "image",
+                "src" : "neha-maheen-mahfin-T_2NQhHQqLM-unsplash.jpg"
+            },
+            "Reinaldo" : {
+                "type": "image",
+                "src": "reinaldo-photography-EzbCrXAzvo4-unsplash.jpg"
+            },
+            "Rhamley" : {
+                "type": "image",
+                "src": "rhamely-yrWL7KrigPo-unsplash.jpg"
+            }                      
+        }
+
+    ]
+}
