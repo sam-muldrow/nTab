@@ -1,22 +1,17 @@
 <html id="overallBody">
 <head>
   <meta charset="utf-8">
-  <title>AlgoDash</title>
+  <title>nTab</title>
   <meta name="description" content="Fancy description...">
   <link rel="stylesheet" href="style.css">
   <script src="loadBackground.js"></script>
+  <script src="calendarBuilder.js"></script>
 </head>
 <body>
     <div id="settingsModal" class="modal">
         <div class="modal-content">
             <span class="close" id="settingsModalCloseButton">&times;</span>
-            <h1>Settings</h1>
-            <h2>JIRA Credentials</h2>
-            <input id="jiraCredURL" type="text" placeholder="URL"/>
-            <input id="jiraCredUsername" type="text" placeholder="Username"/>
-            <input id="jiraCredPassword" type="password" placeholder="Password"/>
-            <button type="button" id="saveCredsButton">Save credentials</button>
-            <button type="button" id="resetCredsButton">Reset</button>
+            <h1></h1>
             <div>
                 <h2>Background</h2>
                 <select name="backgroundSelection" id="backgroundSelect">
@@ -27,6 +22,16 @@
                     <option value="Neha">Neha</option>
                     <option value="Reinaldo">Reinaldo</option>
                     <option value="Rhamley">Rhamley</option>
+                    <option value="Aamir-Rabiee">Aamir-Rabiee</option>
+                    <option value="Mercedes-Mehling">Mercedes-Mehling</option>
+                    <option value="Zayn-Shah">Zayn-Shah</option>
+                    <option value="Artem-Sapegin">Artem-Sapegin</option>
+                    <option value="Guillermo-Ferla">Guillermo-Ferla</option>
+                    <option value="Launch - SpaceX Collection">Launch - SpaceX Collection</option>
+                    <option value="Sky - SpaceX Collection">Sky - SpaceX Collection</option>
+                    <option value="Outside - NASA Collection">Outside - NASA Collection</option>
+                    <option value="Wave - NASA Collection">Wave - NASA Collection</option>
+                    <option value="Center - NASA Collection">Center - NASA Collection</option>
                 </select>
             </div>
         </div>
@@ -34,14 +39,23 @@
     <div class="mainContainer">
         <div class="box mainBox">
             <h1 id="timeDisplay" class="timeDisplay"></h1>
-            <input placeholder="Search google ..." id="searchInput" class="searchBox" type="text"></input>
-            <button id="searchSubmitButton" class="searchButton grow">
-                Search
-            </button>
+                <div class="searchFlexBox">
+                    <input placeholder="Search google ..." id="searchInput" class="searchBox" type="text"></input>
+                    <button id="searchSubmitButton" class="searchButton grow">Search</button>
+                </div>
+                <div class="resultBox" id="searchResultBox">
+                </div>
         </div>
         <div class="box jiraBox">
+                <div  class="googleCalendar" id="googleCalendar">
+                    <p><span id="calUserName"></span></p>
+                    <h1>Your events today:</h1>
+                </div>
                 <!--Add buttons to initiate auth sequence and sign out-->
-                <button id="authorize_button">Sign In</button>
+                <div id="googleOauthButton">
+                    <button id="authorize_button">Sign In To Google Calendar</button>
+                </div>
+                
         </div>
     </div>
     </div>
@@ -52,13 +66,49 @@
         <span>
             |
         </span>
+        <span class="footerSettingsButton">
+           <a href="https://mail.google.com/">Gmail</a>
+        </span>
+        <span>
+            |
+        </span>
+        <span class="footerSettingsButton">
+            <a href="https://drive.google.com/">Drive</a>
+        </span>
+        <span>
+            |
+        </span>
+        <span class="footerSettingsButton">
+            <a href="https://calendar.google.com">Calendar</a>
+        </span>
+        <span>
+            |
+        </span>
+        <span class="footerSettingsButton">
+            <a href="https://docs.google.com/">Docs</a>
+        </span>
+        <span>
+            |
+        </span>
+        <span class="footerSettingsButton">
+            <a href="https://sheets.google.com/">Sheets</a>
+        </span>
+        <span>
+            |
+        </span>
+        <span class="footerSettingsButton">
+            <a href="https://chat.google.com/">Chat</a>
+        </span>
+        <span>
+            |
+        </span>
         <span id="footerSettingsButton" class="footerSettingsButton">
-           Settings ⚙️ 
+           Background Settings ⚙️ 
         </span>
     </div>
   
   <script src="./thirdParty/jquery-3.6.js"></script>
   <script src="script.js"></script>
-  
+  <script src="googleSearch.js"></script>
 </body>
 </html>

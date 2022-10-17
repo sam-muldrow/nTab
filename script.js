@@ -4,8 +4,7 @@
 // ================================= Global and Other Vars ==================================================
 // Wack giant JSON file to store background
 const backgroundOptions = {
-    "backgroundOptions" : [
-        {
+    "backgroundOptions" : [{
             "regularBackground" : {
                 "type": "color",
                 "background-color" : "#323437",
@@ -30,10 +29,44 @@ const backgroundOptions = {
             "Rhamley" : {
                 "type": "image",
                 "src": "rhamely-yrWL7KrigPo-unsplash.jpg"
-            }                      
-        }
-
-    ]
+            },
+            "Mercedes-Mehling" : { 
+                "type": "image",
+                "src": "mercedes-mehling-7I9aCavB8RI-unsplash.jpg"
+            },
+            "Zayn-Shah": {
+                "type": "image",
+                "src": "zayn-shah-KeeX0u6xasU-unsplash.jpg"
+            },
+            "Artem-Sapegin": {
+                "type": "image",
+                "src": "artem-sapegin-qe4cJxjIo8Q-unsplash.jpg",
+            },
+            "Guillermo-Ferla": {
+                "type": "image",
+                "src": "guillermo-ferla-Oze6U2m1oYU-unsplash.jpg"
+            },
+            "Launch - SpaceX Collection": {
+                "type": "image",
+                "src": "spacex-6SbFGnQTE8s-unsplash.jpg"
+            },
+            "Sky - SpaceX Collection": {
+                "type": "image",
+                "src": "spacex--p-KCm6xB9I-unsplash.jpg"
+            },  
+            "Outside - NASA Collection": {
+                "type": "image",
+                "src": "nasa-gYwfpVI2JzM-unsplash.jpg"
+            },
+            "Wave - NASA Collection": {
+                "type":"image",
+                "src": "nasa-WKT3TE5AQu0-unsplash.jpg"
+            },
+            "Center - NASA Collection": {
+                "type":"image",
+                "src": "nasa-YOId6dA4c0I-unsplash.jpg"
+            }
+}]
 }
 
 // A global string in case we can cache the background image name
@@ -48,27 +81,36 @@ function clockInit (){
     document.getElementById("timeDisplay").innerHTML = dateWithouthSecond;
     setTimeout(clockInit, 1000); 
 }
-// Runs when 
+// Runs when the loads in
 function googleInit() {
+    // Logic for grabbing only todays info 
+    // Build date string for beginning of the day
     var d = new Date();
     d.setHours(0,0,0,0);
     var dateAtBeginningOfDay = d.toISOString();
+    // Build date string for end of the day
+    const ed = new Date();
+    ed.setHours(23, 59, 59, 999);
+    var dateAtEndOfDay = ed.toISOString();
+    // Make oauth2 request for current day's events
     chrome.identity.getAuthToken({interactive: true}, function(token) {
         let init = {
-          method: 'GET',
-          async: true,
-          headers: {
-            Authorization: 'Bearer ' + token,
-            'Content-Type': 'application/json'
-          },
-          'contentType': 'json'
-        };
+            method: 'GET',
+            async: true,
+            headers: {
+              Authorization: 'Bearer ' + token,
+              'Content-Type': 'application/json'
+            },
+            'contentType': 'json'
+          };
         fetch(
-            'https://content.googleapis.com/calendar/v3/calendars/primary?key=AIzaSyA9NyRrF78JCD4ZA9yCCtj74tG_aXrPfts?timeMin='+dateAtBeginningOfDay,
+            'https://content.googleapis.com/calendar/v3/calendars/primary/events?timeMin='+dateAtBeginningOfDay+'&timeMax='+dateAtEndOfDay+'&singleEvents=true&orderBy=startTime',
             init)
             .then((response) => response.json())
             .then(function(data) {
-              console.log(data)
+                // Get rid of sign in button and build calendar with the data
+                document.getElementById("googleOauthButton").style.display = 'none';
+                buildGoogleCalendar(data);
             });
       });
 }
@@ -114,50 +156,6 @@ function getAndSetBackgroundImage() {
 // Save background to local storage
 function saveBackground(backgroundName) {
     chrome.storage.sync.set({'background-image': backgroundName});
-}
-
-// ============================== JIRA Cred Functions =========================================================
-
-// Fills creds into storage modal
-function fillInCreds(username, url, password) {
-    document.getElementById("jiraCredUsername").value = username;
-    document.getElementById("jiraCredPassword").value = password;
-    document.getElementById("jiraCredURL").value = url;
-}
-
-// Resets UI in modal and in local DB
-function resetCreds() {
-    var jiraCredObject = {
-        "jiraCredUsername": '',
-        "jiraCredPassword": '',
-        "jiraCredURL": ''
-    }
-    fillInCreds('','','');
-    chrome.storage.sync.set({'jira-creds': jiraCredObject});        
-}
-
-// Save creds to DB based on UI inputs
-function saveCreds() {
-    var jiraCredUsername = document.getElementById("jiraCredUsername").value;
-    var jiraCredPassword = document.getElementById("jiraCredPassword").value;
-    var jiraCredURL = document.getElementById("jiraCredURL").value;
-    var jiraCredObject = {
-        "jiraCredUsername": jiraCredUsername,
-        "jiraCredPassword": jiraCredPassword,
-        "jiraCredURL": jiraCredURL
-    }
-
-    chrome.storage.sync.set({'jira-creds': jiraCredObject});
-}
-
-// Get Jira Creds
-function onInit() {
-    chrome.storage.sync.get(['jira-creds'], function(result) {
-        if(result["jira-creds"]) {
-            result = result["jira-creds"];
-            fillInCreds(result["jiraCredUsername"], result["jiraCredURL"], result["jiraCredPassword"]);
-        }
-    });   
 }
 // ============================ Logic after DOM content loaded ===========================================================
 
@@ -220,9 +218,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             modal.style.display = "none";
         }
     }
-    document.getElementById("saveCredsButton").addEventListener("click", saveCreds);  
-    document.getElementById("resetCredsButton").addEventListener("click", resetCreds);  
-
     
     // ============================= Background selecction ==================================================
     document.getElementById("backgroundSelect").addEventListener('change', (event) => {
@@ -230,5 +225,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         saveBackground(event.target.value);
         setBackground(event.target.value);
     });
-    onInit();
+
 });

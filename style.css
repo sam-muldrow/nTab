@@ -1,16 +1,67 @@
 html, body {
     font-family: Arial, Helvetica, sans-serif;
     background-size: 100% 100%;
+    background-size: cover;
 }
 
 html {
     background-color: #212121;
 }
 
+hr {
+    width:100%;
+    text-align:left;
+    margin-left:0
+}
+
+li {
+    list-style-type: none;
+    padding: 4px;
+}
+
+.searchFlexBox {
+    display: flex;
+}
 
 .searchContainer {
     display: flex;
 }
+.searchInput.active input{
+    border-radius: 5px 5px 0 0;
+}
+  
+.searchInput .resultBox{
+padding: 0;
+opacity: 0;
+pointer-events: none;
+max-height: 280px;
+overflow-y: auto;
+}
+
+.searchInput.active .resultBox{
+padding: 10px 8px;
+opacity: 1;
+pointer-events: auto;
+}
+
+.resultBox {
+    background-color: white;
+    border: none;
+    border-radius: 50px;
+    color: black;
+    padding-inline-end: 44px;
+    padding-inline-start: 44px;
+    position: relative;
+    margin: 5px;
+}
+  
+  .searchInput.active .resultBox li{
+    display: block;
+    text-decoration: none;
+  }
+  .resultBox li:hover{
+    background: #efefef;
+  }
 
 .backgroundImageClass {
     width: 100%;
@@ -159,23 +210,37 @@ input, button {
     color: white;
     margin: 10px;
 }
+.googleCalendar {
+    overflow: scroll;
+    height: inherit;
+}
+
+.googleCalendarBlock {
+    border-radius: 1px;
+}
+
+.gCalEventName {
+    color: black;
+}
 
 .jiraBox {
     background-color: white;
     border: 3px solid white;
-    border-radius: .5em;
+    border-radius: 0.5em;
     color: #666;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
+    overflow: scroll;
     
 }
 
 .mainBox {
+    margin-top: 300px;
     width: 600px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     align-content: center;
     flex-direction: column;
@@ -209,4 +274,8 @@ input, button {
 }
 .footerSettingsButton {
     cursor: pointer;
+}
+.footerSettingsButton a {
+    color: white;
+    text-decoration: dotted;
 }
